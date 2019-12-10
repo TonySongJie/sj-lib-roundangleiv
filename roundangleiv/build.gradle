@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.gitee.songjie_xuan'
+
+android {
+
+    compileSdkVersion rootProject.ext.appVersions.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.appVersions.minSdkVersion
+        targetSdkVersion rootProject.ext.appVersions.targetSdkVersion
+        versionCode rootProject.ext.appVersions.versionCode
+        versionName rootProject.ext.appVersions.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+        flavorDimensions "versionCode"
+
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a", "x86"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+
+            // 混淆文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    // 防止编译的时候oom、GC
+    dexOptions {
+        jumboMode = false
+        javaMaxHeapSize "4G"
+        preDexLibraries = false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies["kotlinStdlibJdk7"]
+
+    implementation rootProject.ext.dependencies["androidCoreKtx"]
+    implementation rootProject.ext.dependencies["androidAppcompat"]
+    implementation rootProject.ext.dependencies["androidConstraintLayout"]
+
+    implementation rootProject.ext.dependencies["efLogger"]
+
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["androidTestJunit"]
+    androidTestImplementation rootProject.ext.dependencies["androidTestEspressoCore"]
+}

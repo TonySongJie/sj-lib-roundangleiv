@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.appVersions.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.appVersions.minSdkVersion
+        targetSdkVersion rootProject.ext.appVersions.targetSdkVersion
+
+        applicationId "com.xuan.sj.component"
+        versionCode rootProject.ext.appVersions.versionCode
+        versionName rootProject.ext.appVersions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies["kotlinStdlibJdk7"]
+
+    implementation rootProject.ext.dependencies["androidCoreKtx"]
+    implementation rootProject.ext.dependencies["androidAppcompat"]
+    implementation rootProject.ext.dependencies["androidConstraintLayout"]
+
+    implementation rootProject.ext.dependencies["efLogger"]
+
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["androidTestJunit"]
+    androidTestImplementation rootProject.ext.dependencies["androidTestEspressoCore"]
+
+    implementation project(':roundangleiv')
+}

@@ -1,0 +1,51 @@
+ext {
+
+    // TODO->isModule：true->集成模式，false->独立开发模式
+    isModule = true
+
+    // TODO-> appVersions ->应用版本号
+    appVersions = [
+            versionCode      : 001, //版本号
+            versionName      : "0.0.1", //版本名称
+
+            compileSdkVersion: 29,
+            minSdkVersion    : 19,
+            targetSdkVersion : 29,
+    ]
+
+    // TODO->libVersions ->声明第三方库版本号
+    libVersions = [
+            // Android
+            androidAppcompatV       : "1.1.0",
+            androidConstraintLayoutV: "1.1.3",
+
+            efLoggerV               : "1.0.0",
+            grantorV                : "2.5",
+            utilCodeV               : "1.25.5",
+
+            junitV                  : "4.12",
+            androidTestJunitV       : "1.1.1",
+            androidTestEspressoCoreV: "3.2.0",
+    ]
+
+    // TODO->dependencies ->声明第三方库版本库
+    dependencies = [
+            // TODO->kotlin基础包
+            kotlinStdlibJdk7       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinV",
+
+            // TODO->android基础包
+            androidCoreKtx         : "androidx.core:core-ktx:${libVersions["androidAppcompatV"]}",
+            androidAppcompat       : "androidx.appcompat:appcompat:${libVersions["androidAppcompatV"]}",
+            androidConstraintLayout: "androidx.constraintlayout:constraintlayout:${libVersions["androidConstraintLayoutV"]}",
+
+            // TODO->工具依赖包
+            efLogger               : "com.github.TonySongJie:sj-lib-logger:v${libVersions["efLoggerV"]}",
+            grantor                : "com.github.dfqin:grantor:${libVersions["grantorV"]}",
+            utilCode               : "com.blankj:utilcode:${libVersions["utilCodeV"]}",
+
+            // TODO->测试依赖包
+            junit                  : 'junit:junit:4.12',
+            androidTestJunit       : 'androidx.test.ext:junit:1.1.0',
+            androidTestEspressoCore: 'androidx.test.espresso:espresso-core:3.1.1',
+    ]
+}

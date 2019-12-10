@@ -1,0 +1,8 @@
+# 文件夹
+.gradle/
+.idea/
+build/
+
+# 文件
+*.iml
+local.properties
